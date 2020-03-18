@@ -37,9 +37,9 @@ hexo.extend.filter.register('after_post_render', function(data){
       });
 
       $('img').each(function(){
-        if ($(this).attr('src')){
+        if ($(this).attr('data-src')){
           // For windows style path, we replace '\' to '/'.
-          var src = $(this).attr('src').replace('\\', '/');
+          var src = $(this).attr('data-src').replace('\\', '/');
           if(!(/http[s]*.*|\/\/.*/.test(src)
             || /^\s+\//.test(src)
             || /^\s*\/uploads|images\//.test(src))) {
@@ -55,7 +55,7 @@ hexo.extend.filter.register('after_post_render', function(data){
             srcArray.shift();
             src = srcArray.join('/');
 
-            $(this).attr('src', config.root + link + src);
+            $(this).attr('data-src', config.root + link + src);
             console.info&&console.info("update link as:-->"+config.root + link + src);
           }
         }else{
